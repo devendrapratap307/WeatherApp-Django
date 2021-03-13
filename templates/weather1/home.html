@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin : 0;
+            box-sizing:border-box;
+        }
+        .nav{
+            position:sticky;
+            top:0;
+            background-color:#333;
+            list-style-type:none ;
+            text-align: left;
+            margin: 0;
+            padding:0;
+
+        }
+
+        .nav li {
+            display: inline-block;
+            font-size: 15px;
+            padding: 10px 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+
+        #main {
+             text-align: center;
+             padding-top: 1px;
+             margin-bottom: 10px;
+
+        }
+
+
+        .div{
+             text-align:center;
+             margin-left:10px;
+             margin-right:10px;
+             color:white;
+             top:0;
+        }
+
+        div.card{
+
+            box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(15, 15, 184, 0.5);
+            text-align: center;
+            border-style:outset;
+            cursor: pointer;
+            display:block;
+            padding: 10px;
+            pointer-events: auto;
+            margin:0 30%;
+            width:40%;
+            border-radius:30px;
+            background-color:white;
+        }
+        button[type='submit']{
+             border: hidden;
+             color: gray;
+              background-color:white;
+             cursor: pointer;
+
+        }
+        button[type='submit']:hover{
+             color:blue;
+             padding:0 5px;
+             border:hidden
+        }
+        input[type='text']{
+
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+            border-style:hidden;
+            outline:none;
+            width:78%
+        }
+
+        div.card2{
+            box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(15, 15, 184, 0.5);
+            text-align: inline;
+            border-style:inset;
+            cursor: pointer;
+            display:block;
+            padding: 10px 70px;
+            pointer-events: auto;
+            margin:0 30% 60% 30%;
+            width:40%;
+            color:blue;
+            background-color: silver;
+            opacity:0.9;
+        }
+
+        b{
+        border:1px outset cyan;
+        padding:2px 5px;
+        margin:10px 5px;
+        color:white;
+        background-color:blue;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <ul class="nav">
+        <li><h1 style=" color:white;margin-left:5px;">Weather App <sub><i style="color:blue;font-size:small;">Created By - Devendra Pratap</i></sub></h1></li>
+    </ul>
+
+
+    <div style="background-image:url('https://cdn.pixabay.com/photo/2018/01/18/08/28/grass-3089789_960_720.jpg');height:550px;">
+          <div id="main">
+               <form method="POST">{% csrf_token %}
+                    <fieldset style="margin:10px;">
+                        <legend style="margin:10px;"><h2><b> Find the Weather </b></h2></legend>
+                        <div class="card">
+                             <label for="city"></label>
+                            <input type="text" name="city" id="city" value=""  placeholder="Type name of city..." spellcheck="false">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </fieldset>
+               </form>
+          </div>
+
+         <div class="card2" >
+            {% if weather %}
+
+             <img src="https://openweathermap.org/img/w/{{icon}}.png" style="box-size: 100px;padding:2px 10px;margin:2px 30px;"><br>
+           <p>
+             <h3><b>Forecast :</b>{{weather}} &nbsp;</h3><br>
+             <h3><b>Temperature : </b>{{temp}}<sup>o</sup>C</h3><br>
+             <h3><b>Location : </b>{{name}} , {{country}}</h3><br>
+             <h3><b>Wind Speed : </b> {{windSpeed}} m/s</h3><br>
+             <h3><b>Pressure : </b> {{pressure}} hPa</h3><br>
+             <h3><b>Humidity : </b> {{humidity}} %</h3><br>
+             <h3><b>Clouds : </b> {{cloud}}  </h3>
+           </p>
+            {% else %}
+            <p>Type above a suitable city name ...</p>
+
+            {% endif %}
+
+         </div>
+
+    </div>
+
+
+</body>
+</html>
