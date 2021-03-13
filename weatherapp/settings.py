@@ -25,7 +25,9 @@ SECRET_KEY = 'ylnr_mdb(7do+t^g^uazued+^-qpx(bf1b*co-jo--^wbmkcu&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'weather-django-app.herokuapp.com'
+]
 
 
 # Application definition
